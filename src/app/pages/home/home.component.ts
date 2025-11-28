@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ZardButtonComponent } from 'src/app/components/ui/button/button.component';
 import { ZardCardComponent } from 'src/app/components/ui/card/card.component';
-import { Task, TaskType } from 'src/app/services/task';
+import { TaskService, TaskType } from 'src/app/services/taskService';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -29,8 +29,10 @@ import { Observable } from 'rxjs';
                 <li>{{ task.title }}</li>
               }
             </ul>
+          } @else {
+            <p>No tasks available.</p>
           }
-          <button z-button class="w-full">Get Started</button>
+          <button z-button class="w-full" (click)="taskService.addTask({title: 'test', description: 'test', status: 'pending'})">Ajouter une tache</button>
         </div>
       </z-card>
     </div>
@@ -38,12 +40,10 @@ import { Observable } from 'rxjs';
   styles: []
 })
 export class HomeComponent {
+  taskService: TaskService = inject(TaskService);
 
-  tasks: Observable<TaskType[]>;
+  tasks = this.taskService.taskObservable;
 
-  constructor(private taskService: Task) {
-    this.tasks = this.taskService.getTasks();
-  }
 }
 
 
