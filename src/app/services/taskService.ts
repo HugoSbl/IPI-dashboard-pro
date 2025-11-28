@@ -44,8 +44,6 @@ export class TaskService {
         this.taskSubject.next(this.tasks);
     }
 
-    public getTasks() {
-        return of(this.tasks);
-    }
+
 }
 export default TaskService;
