@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 
 export interface TaskType {
-    id: number;
+    id?: number;
     title: string;
     description: string;
     status: string;
@@ -12,7 +13,7 @@ export interface TaskType {
 @Injectable({
   providedIn: 'root',
 })
-export class Task {
+export class TaskService {
 
     public tasks: TaskType[] = [
       {
@@ -35,8 +36,16 @@ export class Task {
       },
     ];
 
+    private taskSubject = new BehaviorSubject<TaskType[]>(this.tasks);
+    public taskObservable = this.taskSubject.asObservable();
+
+    addTask(task: TaskType) {
+        this.tasks.push(task);
+        this.taskSubject.next(this.tasks);
+    }
+
     public getTasks() {
         return of(this.tasks);
     }
 }
-export default Task;
+export default TaskService;

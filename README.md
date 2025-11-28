@@ -14,6 +14,12 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 ng new dashboard-pro
 ```
 
+## 2 nd partie : 
+
+creation de la branch reactive
+
+ajout des valeurs reactives via les observables
+
 ## Development server
 
 To start a local development server, run:
