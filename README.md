@@ -18,8 +18,10 @@ ng new dashboard-pro
 
 creation de la branch reactive
 
-ajout de la valeur reactive via un observable
+ajout de la valeur reactive via un observable et modification de cette derniere via .next()
 ajout d'une fonction pour ajouter une tache
+remplacement de la fonction getTasks() par un observable
+
 
 
 ## Development server
