@@ -20,7 +20,7 @@
         "src/app/shared/*"
       ],
       "@components/*": [
-        "src/components/ui/*"
+        "src/app/components/ui/*"
       ],
       "@utils/*": [
         "src/utils/*"

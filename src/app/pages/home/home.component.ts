@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ZardButtonComponent } from '@components/button/button.component';
-import { ZardCardComponent } from '@components/card/card.component';
+import { ZardButtonComponent } from 'src/app/components/ui/button/button.component';
+import { ZardCardComponent } from 'src/app/components/ui/card/card.component';
+import { Task, TaskType } from 'src/app/services/task';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +22,14 @@ import { ZardCardComponent } from '@components/card/card.component';
           <p class="text-neutral-600 dark:text-neutral-400">
             HOME
           </p>
+          <h2>Task List</h2>
+          @if (tasks) {
+            <ul>
+              @for (task of tasks | async; track task.id) {
+                <li>{{ task.title }}</li>
+              }
+            </ul>
+          }
           <button z-button class="w-full">Get Started</button>
         </div>
       </z-card>
@@ -27,7 +37,14 @@ import { ZardCardComponent } from '@components/card/card.component';
   `,
   styles: []
 })
-export class HomeComponent {}
+export class HomeComponent {
+
+  tasks: Observable<TaskType[]>;
+
+  constructor(private taskService: Task) {
+    this.tasks = this.taskService.getTasks();
+  }
+}
 
 
 

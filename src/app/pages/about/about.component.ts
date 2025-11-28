@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ZardCardComponent } from '@components/card/card.component';
+import { ZardCardComponent } from 'src/app/components/ui/card/card.component';
 
 @Component({
   selector: 'app-about',
